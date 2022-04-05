@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MyAwesomeApp.ViewModels"
+             x:Class="MyAwesomeApp.Views.AddAppointmentPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AddAppointmentPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="ADD TASK"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                TextColor="Black"
+                FontSize="30"
+                FontAttributes="Bold"/>
+
+            <Entry Text= "{Binding Name}"
+                   Margin="10"/>
+            <Entry Text= "{Binding Description}"
+                   Margin="10"/>
+            <Entry Text= "{Binding Start}"
+                   Margin="10"/>
+            <Label Text="Start"
+                   FontSize="10"
+                   TextColor="Black"
+                   HeightRequest="20"
+                   VerticalOptions="Start"
+                   Margin="15, 0, 20, 0"/>
+            <Entry Text= "{Binding Stop}"
+                   Margin="10"/>
+            <Label Text="Stop"
+                   FontSize="10"
+                   TextColor="Black"
+                   HeightRequest="20"
+                   VerticalOptions="Start"
+                   Margin="15, 0, 20, 0"/>
+            <Entry Text= "{Binding attendeeString}"
+                   Margin="10"
+                   VerticalOptions="End"/>
+            <Label Text="Attendees"
+                   FontSize="10"
+                   TextColor="Black"
+                   HeightRequest="20"
+                   VerticalOptions="Start"
+                   Margin="15, 0, 20, 0"/>
+            <Button Text="SUBMIT"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Command="{Binding Submit}"
+                    HeightRequest="75"
+                    WidthRequest="380"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
+using System.Windows.Input;
+using MyAwesomeApp.Services;
+using System.Linq;
+
+namespace MyAwesomeApp.ViewModels
+{
+    internal class AddAppointmentPageViewModel : BindableObject
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime Stop { get; set; }
+        public string attendeeString { get; set; }
+        public ICommand Submit { get; }
+        public AddAppointmentPageViewModel()
+        {
+            Name = "Name";
+            Description = "Description";
+            Start = new DateTime();
+            Stop = new DateTime();
+            attendeeString = "Mark,John,Mildred,Mills,etc.";
+
+            Submit = new Command(SubmitCommand);
+        }
+
+        async void SubmitCommand()
+        {
+            List<string> theAttendees = attendeeString.Split(',').ToList();
+            ItemService theStuff = new ItemService();
+            theStuff.AddAppointment(Name, Description, Start, Stop, theAttendees);
+            await Shell.Current.GoToAsync("//AddPage");
+        }
+    }
+}

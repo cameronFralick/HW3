@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MyAwesomeApp.ViewModels"
+             x:Class="MyAwesomeApp.Views.AddTaskPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AddTaskPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="ADD TASK"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                TextColor="Black"
+                FontSize="30"
+                FontAttributes="Bold"/>
+
+            <Entry Text= "{Binding Name}"
+                   Margin="10"/>
+            <Entry Text= "{Binding Description}"
+                   Margin="10"/>
+            <Entry Text= "{Binding Deadline}"
+                   Margin="10"/>
+            <Grid>
+                <Label Text="Task Completed?"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Margin="12"
+                       TextColor="Black"
+                       FontSize="18"/>
+                <Switch IsToggled="{Binding isCompleted}" 
+                        Margin="15"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"/>
+            </Grid>
+            <Button Text="SUBMIT"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Command="{Binding Submit}"
+                    HeightRequest="75"
+                    WidthRequest="380"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
