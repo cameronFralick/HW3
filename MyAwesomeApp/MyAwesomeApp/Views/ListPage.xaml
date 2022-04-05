@@ -33,11 +33,15 @@
                                 <Label
                                     Grid.Column="0"
                                     Text="{Binding ItemType}"
+                                    FontSize="Large"
+                                    TextColor="Maroon"
                                     VerticalOptions="Center"
                                     Margin="10,0,0,0"/>
                                 <Label
                                     Grid.Column="1"
                                     Text="{Binding Name}"
+                                    FontSize="Medium"
+                                    TextColor="Black"
                                     HorizontalOptions="Start"
                                     VerticalOptions="Center"/>
                                 <Label
@@ -48,7 +52,7 @@
                                 <Switch
                                     Grid.Column="3"
                                     IsToggled="{Binding Priority}"
-                                    VerticalOptions="EndAndExpand"
+                                    
                                     HorizontalOptions="End"
                                     Margin="0,15,0,0"/>
                             </Grid>

@@ -31,7 +31,7 @@ namespace MyAwesomeApp.Models
             this.Deadline = deadline;
             this.IsCompleted = isCompleted;
             this.Priority = false;
-            this.ItemType = "Task";
+            this.ItemType = "T";
         }
 
         public override string ToString()
@@ -55,7 +55,7 @@ namespace MyAwesomeApp.Models
             this.start = start;
             this.stop = stop;
             this.Attendees = Attendees;
-            this.ItemType = "Appointment";
+            this.ItemType = "A";
         }
 
         public override string ToString()
