@@ -19,7 +19,7 @@ namespace MyAwesomeApp.ViewModels
 
         public ItemService itemService { get; set; }
 
-        public ObservableCollection<KeyValuePair<string, Item>> ItemTypes { get; set; }
+        
 
         
 
@@ -30,21 +30,10 @@ namespace MyAwesomeApp.ViewModels
             itemService = new ItemService();
             Items = new ObservableCollection<Item>(itemService.GetTasks());
 
-            ItemTypes = new ObservableCollection<KeyValuePair<string, Item>>();
-            for(int i = 0; i < Items.Count; i++)
-            {
-                if(Items[i] is Task)
-                {
-                    ItemTypes.Add(new KeyValuePair<string, Item>("Task", Items[i]));
-                }
-                else
-                {
-                    ItemTypes.Add(new KeyValuePair<string, Item>("Appointment", Items[i]));
-                }
-            }
-            Items.Add(new Task("A", "B,", "12-34", false));
-            Items.Add(new Task("B", "B,", "12-34", true));
-            Items.Add(new Task("C", "B,", "12-34", false));
+            
+            Items.Add(new Task("Task1", "This is description one", "12-34", false));
+            Items.Add(new Task("Task2", "this is description 2", "12-34", true));
+            Items.Add(new Task("Task3", "this is description 3", "12-34", false));
 
 
         }

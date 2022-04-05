@@ -14,7 +14,15 @@
                       IsPullToRefreshEnabled="True"
                       
                       >
-
+            <ListView.Header>
+                <Label Text="This is the Header"
+                       TextColor="Black"
+                       FontSize="25"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HeightRequest="40"
+                       FontAttributes="Bold"/>
+            </ListView.Header>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -33,10 +41,11 @@
                                 <Label
                                     Grid.Column="0"
                                     Text="{Binding ItemType}"
-                                    FontSize="Large"
+                                    FontSize="35"
                                     TextColor="Maroon"
                                     VerticalOptions="Center"
-                                    Margin="10,0,0,0"/>
+                                    Margin="20,0,0,0"
+                                    FontAttributes="Bold"/>
                                 <Label
                                     Grid.Column="1"
                                     Text="{Binding Name}"

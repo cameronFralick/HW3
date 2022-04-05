@@ -84,6 +84,7 @@
     <FlyoutItem Title="AddPage" Icon="icon_feed.png">
         <ShellContent Route="AddPage" ContentTemplate="{DataTemplate local:AddPage}" />
     </FlyoutItem>
+    
 
     
 

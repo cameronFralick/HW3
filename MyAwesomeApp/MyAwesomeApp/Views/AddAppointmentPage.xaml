@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="ADD TASK"
+            <Label Text="ADD APPOINTMENT"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                 TextColor="Black"

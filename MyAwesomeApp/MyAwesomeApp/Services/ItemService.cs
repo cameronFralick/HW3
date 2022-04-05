@@ -14,7 +14,7 @@ namespace MyAwesomeApp.Services
         List<Item> theItems = new List<Item>();
         string persistencePath;
         JsonSerializerSettings serializerSettings;
-        
+        string fileNamePath;
 
         public ItemService()
         {
@@ -26,7 +26,11 @@ namespace MyAwesomeApp.Services
             //initialize path
             //initialize serializer
             //attempt to de-serialize
-            persistencePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\SaveData.json";
+            
+            fileNamePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\FileName.txt";
+
+            string fileName = System.IO.File.ReadAllText(fileNamePath);
+            persistencePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\{fileName}.json";
             serializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
             
