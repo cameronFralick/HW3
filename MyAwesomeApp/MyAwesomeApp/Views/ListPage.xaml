@@ -12,6 +12,8 @@
             <ListView BackgroundColor="Transparent"
                       ItemsSource="{Binding Items}"
                       IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding isBusy, Mode=OneWay}"
+                      RefreshCommand="{Binding RefreshCommand}"
                       
                       >
             <ListView.Header>

@@ -29,8 +29,8 @@ namespace MyAwesomeApp.Services
             
             fileNamePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\FileName.txt";
 
-            string fileName = System.IO.File.ReadAllText(fileNamePath);
-            persistencePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\{fileName}.json";
+            //string fileName = File.ReadAllText(fileNamePath);
+            persistencePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\defaulSave.json";
             serializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
             
