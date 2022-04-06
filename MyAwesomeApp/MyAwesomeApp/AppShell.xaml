@@ -84,6 +84,9 @@
     <FlyoutItem Title="AddPage" Icon="icon_feed.png">
         <ShellContent Route="AddPage" ContentTemplate="{DataTemplate local:AddPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="SaveSelector" Icon="icon_feed.png">
+        <ShellContent Route="SaveSelector" ContentTemplate="{DataTemplate local:SaveSelector}" />
+    </FlyoutItem>
     
 
     

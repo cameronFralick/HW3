@@ -8,13 +8,15 @@ using MyAwesomeApp.Models;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MyAwesomeApp.Views;
 
 
 
 
-namespace MyAwesomeApp.ViewModels
+
+namespace MyAwesomeApp.ViewModels 
 {
-    internal class ListPageViewModel : BindableObject
+    internal class ListPageViewModel : BindableObject 
     {
         public ObservableCollection<Item> Items { get; set; }
 
@@ -23,39 +25,64 @@ namespace MyAwesomeApp.ViewModels
         
         public ICommand RefreshCommand { get; }
 
+        public ICommand DeleteCommand 
+        { 
+            get
+            {
+                return new Command((x) => DeleteStuff(x));
+            }
+        }
+
+        public ICommand SaveCommand { get; }
+
         public bool isBusy { get; set; }
+        
         
 
         public ListPageViewModel()
         {
-            isBusy = false;
+            //isBusy = false;
             RefreshCommand = new Command(RefreshView);
+            SaveCommand = new Command(SaveStuff);
 
             itemService = new ItemService();
             Items = new ObservableCollection<Item>(itemService.GetTasks());
 
-            
-            Items.Add(new Models.Task("Task1", "This is description one", "12-34", false));
-            Items.Add(new Models.Task("Task2", "this is description 2", "12-34", true));
-            Items.Add(new Models.Task("Task3", "this is description 3", "12-34", false));
-
 
         }
-        /*private void Switch_OnToggled(object sender, ToggledEventArgs e)
+        
+
+
+        void DeleteStuff(object l)
+        {
+            ListView testView = (ListView)l;
+
+            Item x = (Item)testView.SelectedItem;
+
+            Items.Remove(x);
+
+            itemService.SetList(Items.ToList());
+        }
+
+        void SaveStuff()
         {
             itemService.SetList(Items.ToList());
-        }*/
+        }
 
         async void RefreshView()
         {
-            isBusy = true;
-            await System.Threading.Tasks.Task.Delay(10);
-            Items.Clear();
             
+            isBusy = true;
+
+            await System.Threading.Tasks.Task.Delay(2000);
+            Items.Clear();
+            Items = new ObservableCollection<Item>(itemService.GetTasks());
+
             isBusy = false;
+            
         }
 
-
+        
         
     }
 

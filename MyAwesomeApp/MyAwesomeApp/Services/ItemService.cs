@@ -27,11 +27,22 @@ namespace MyAwesomeApp.Services
             //initialize serializer
             //attempt to de-serialize
             
-            fileNamePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\FileName.txt";
+            fileNamePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/FileName.txt";
 
-            //string fileName = File.ReadAllText(fileNamePath);
-            persistencePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\defaulSave.json";
+            if(!File.Exists(fileNamePath))
+            {
+                File.CreateText(fileNamePath);
+            }
+
+            if(File.ReadAllText(fileNamePath) == "")
+            {
+                File.WriteAllText(fileNamePath, "DefaultSave");
+            }
+
+            string fileName = File.ReadAllText(fileNamePath);
+            persistencePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/{fileName}.json";
             serializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+
 
             
 
@@ -48,6 +59,10 @@ namespace MyAwesomeApp.Services
             }
         }
 
+        public void ChangeFileName(string inputName)
+        {          
+            File.WriteAllText(fileNamePath, inputName);
+        }
 
         public bool AddTask(string name, string description, string deadline, bool isCompleted)
         {
@@ -60,8 +75,9 @@ namespace MyAwesomeApp.Services
 
             if (File.Exists(persistencePath))
             {
-                var state = File.ReadAllText(persistencePath);
-                theItems = JsonConvert.DeserializeObject<List<Item>>(state, serializerSettings) ?? new List<Item>();
+                File.Delete(persistencePath);
+                var savedList = JsonConvert.SerializeObject(theItems, serializerSettings);
+                File.WriteAllText(persistencePath, savedList);
             }
             else
             {
@@ -114,6 +130,9 @@ namespace MyAwesomeApp.Services
         public List<Item> GetTasks()
         {
             Init();
+            //List<Item> list = new List<Item>();
+            //list.Add(new Task("name", "test", "date", true));
+            //return list;
             return theItems;
         }
 

@@ -7,30 +7,62 @@
         <viewmodels:ListPageViewModel/>
     </ContentPage.BindingContext>
 
+    
+    
     <ContentPage.Content>
-        
-            <ListView BackgroundColor="Transparent"
+
+
+        <ListView 
+                      x:Name="theListView"
+                      BackgroundColor="Transparent"
                       ItemsSource="{Binding Items}"
-                      IsPullToRefreshEnabled="True"
-                      IsRefreshing="{Binding isBusy, Mode=OneWay}"
-                      RefreshCommand="{Binding RefreshCommand}"
-                      
+                      IsPullToRefreshEnabled="False"
+                      RefreshCommand="{Binding RefreshCommand}"                     
+                      IsRefreshing="{Binding isBusy}"
+                      HeightRequest="900"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True"
                       >
             <ListView.Header>
-                <Label Text="This is the Header"
-                       TextColor="Black"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="TO-DO"
+                       TextColor="Maroon"
                        FontSize="25"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        HeightRequest="40"
-                       FontAttributes="Bold"/>
+                       FontAttributes="Bold"
+                       Grid.Row="0"/>
+                    
+                    <Label Text="   Type              Name          Description    Priotirty"
+                       TextColor="Black"
+                       FontSize="18"
+                       HorizontalOptions="Start"
+                       
+                       HeightRequest="40"
+                       FontAttributes="Bold"
+                       Grid.Row="1"
+                       VerticalOptions="End"/>
+                </Grid>
+
             </ListView.Header>
 
-                <ListView.ItemTemplate>
+        
+
+        <ListView.ItemTemplate>
                     <DataTemplate>
                         
                         <ViewCell>
-                            <Grid>
+                            <Grid
+                                Padding="5">
+                                
+                            
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
@@ -64,15 +96,43 @@
                                     Grid.Column="3"
                                     IsToggled="{Binding Priority}"
                                     
-                                    HorizontalOptions="End"
+                                    HorizontalOptions="Center"
                                     Margin="0,15,0,0"/>
-                            </Grid>
+                            
+                        </Grid>
                         </ViewCell>
                         
                         
                         
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+            <ListView.Footer>
+                <Grid>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Text="Delete"
+                        Command="{Binding DeleteCommand}"
+                        CommandParameter="{x:Reference theListView}"
+                        Grid.Row="0"
+                        Margin="8"
+                        />
+                    <Button
+                        Text="Save"
+                        Command="{Binding SaveCommand}"
+                        Grid.Row="1"
+                        Margin="8"
+                        />
+                </Grid>
+            </ListView.Footer>
             </ListView>
         
     </ContentPage.Content>

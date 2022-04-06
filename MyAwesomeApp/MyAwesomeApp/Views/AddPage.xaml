@@ -19,12 +19,14 @@
                         Command="{Binding GoToTaskAdd}"
                         Grid.Row="2" 
                         Text="Task"
-                        FontAttributes="Bold"/>
+                        FontAttributes="Bold"
+                        Margin="10"/>
                 <Button x:Name="AppointmentClick"
                         Command="{Binding GoToAppointmentAdd}"
                         Grid.Row="3"
                         Text="Appointment"
-                        FontAttributes="Bold"/>
+                        FontAttributes="Bold"
+                        Margin="10"/>
 
             </StackLayout>
         </Grid>

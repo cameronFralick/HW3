@@ -19,6 +19,15 @@ namespace MyAwesomeApp.Views
             BindingContext = new ListPageViewModel();
         }
 
-       
+        protected override void OnAppearing()
+        {
+            BindingContext = new ListPageViewModel();
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
     }
 }

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MyAwesomeApp.ViewModels"
+             x:Class="MyAwesomeApp.Views.SaveSelector">
+
+
+    <ContentPage.BindingContext>
+        <viewmodels:SaveSelectorViewModel/>
+    </ContentPage.BindingContext>
+        
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding TestText}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                   FontAttributes="Bold"
+                   FontSize="30"
+                   TextColor="Maroon"/>
+            <Entry Text="{Binding SaveName, Mode=TwoWay}"
+                   Margin="10"
+                   VerticalOptions="Center"
+                   FontSize="20"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"/>
+            <Button Text="Confirm"
+                    Command="{Binding SubmitCommand}"
+                    Margin="10,10,10, 20"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
