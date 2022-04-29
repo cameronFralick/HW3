@@ -24,6 +24,11 @@ namespace MyAwesomeApp.Models
         public string Deadline { get; set; }
         public bool IsCompleted { get; set; }
 
+        public Task()
+        {
+
+        }
+
         public Task(string name, string description, string deadline, bool isCompleted)
         {
             this.Name = name;
@@ -47,6 +52,11 @@ namespace MyAwesomeApp.Models
         public DateTime stop { get; set; }
 
         public List<String> Attendees;
+
+        public CalendarAppointment()
+        {
+
+        }
 
         public CalendarAppointment(string name, string description, DateTime start, DateTime stop, List<String> Attendees)
         {

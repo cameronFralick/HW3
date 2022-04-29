@@ -9,6 +9,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MyAwesomeApp.Views;
+using Newtonsoft.Json;
 
 
 
@@ -21,6 +22,8 @@ namespace MyAwesomeApp.ViewModels
         public ObservableCollection<Item> Items { get; set; }
 
         public ItemService itemService { get; set; }
+
+        public WebItemService webItemService { get; set; }
 
         
         public ICommand RefreshCommand { get; }
@@ -45,15 +48,18 @@ namespace MyAwesomeApp.ViewModels
             RefreshCommand = new Command(RefreshView);
             SaveCommand = new Command(SaveStuff);
 
-            itemService = new ItemService();
-            Items = new ObservableCollection<Item>(itemService.GetTasks());
+            //itemService = new ItemService();
+            //Items = new ObservableCollection<Item>(itemService.GetTasks());
 
+            webItemService = new WebItemService();
+
+            Items = new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(webItemService.Get("http://192.168.1.144:5262/Item/GetAll").Result, new ProductJsonConverter()));
 
         }
         
 
 
-        void DeleteStuff(object l)
+        async void DeleteStuff(object l)
         {
             ListView testView = (ListView)l;
 
@@ -61,12 +67,15 @@ namespace MyAwesomeApp.ViewModels
 
             Items.Remove(x);
 
-            itemService.SetList(Items.ToList());
+            //itemService.SetList(Items.ToList());
+
+            await webItemService.Post("http://192.168.1.144:5262/Item/UpdateList", Items);
         }
 
-        void SaveStuff()
+        async void SaveStuff()
         {
-            itemService.SetList(Items.ToList());
+            //itemService.SetList(Items.ToList());
+            await webItemService.Post("http://192.168.1.144:5262/Item/UpdateList", Items);
         }
 
         async void RefreshView()
@@ -77,6 +86,7 @@ namespace MyAwesomeApp.ViewModels
             await System.Threading.Tasks.Task.Delay(2000);
             Items.Clear();
             Items = new ObservableCollection<Item>(itemService.GetTasks());
+            Items = new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(webItemService.Get("http://192.168.1.144:5262/Item/GetAll").Result));
 
             isBusy = false;
             
